@@ -2,12 +2,10 @@
 source(file.path(substr(getwd(),1,22),"header.R"))
 
 ifupdate=F
+IFsaveNewData=F
+
 mydate="2019-5-10"
 
-
-mypath.R="./R/"
-mypath.data="./data/"
-sapply(paste0(mypath.R,dir(mypath.R)),source)
 
 load(paste0(mypath.data,dir(path=mypath.data,pattern="(mom)*(RData)")))
 
@@ -47,6 +45,10 @@ y
 loadRData("secName")
 rownames(y)<-secName[match(rownames(y),secName$code),2]
 print(y)
-mypath=paste0(upPath,"0000-00-05Production/momTiming/")
-file.remove(paste0(mypath,    dir(path = mypath,pattern = ".RData")))
-save.image(paste0(mypath,"momProduct",mydate,".RData"))
+
+if(IFsaveNewData){
+  file.remove(paste0(mypath.data,dir(path = mypath.data,pattern = ".RData")))
+  
+  save.image(paste0(mypath.data,"mom",mydate,".RData"))
+  
+}

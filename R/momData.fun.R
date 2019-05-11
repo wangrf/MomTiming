@@ -80,7 +80,7 @@ momData.fun <- function(method = c("marketTiming", "assetRotaion", "both"),
   
   
   for(sym in acct.syms){
-    load(paste0(dataPath,"/",sym,".RData"),envir = .GlobalEnv)
+    loadRData(sym)
   }
   print("a")
   ## cash Fund for trading
